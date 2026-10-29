@@ -1,0 +1,18 @@
+# segredos
+.env
+
+# dados e artefatos gerados (os datasets não podem ser redistribuídos)
+data/
+artifacts/
+reports/llm/
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# sistema
+.DS_Store

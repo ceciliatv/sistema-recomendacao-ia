@@ -1,10 +1,10 @@
 <div align="center">
 
-# Repertório
+# Sistema de Recomendação com IA
 
-**Recomendação de livros, filmes, séries e música com LLMs, tool use, modelos de ranking em PyTorch e um framework de evals.**
+**Repertório:** recomendação de livros, filmes, séries e música com LLMs, tool use, modelos de ranking em PyTorch e um framework de evals.
 
-[![CI](https://github.com/ceciliatv/repertorio/actions/workflows/ci.yml/badge.svg)](https://github.com/ceciliatv/repertorio/actions/workflows/ci.yml)
+[![CI](https://github.com/ceciliatv/sistema-recomendacao-ia/actions/workflows/ci.yml/badge.svg)](https://github.com/ceciliatv/sistema-recomendacao-ia/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.11%2B-3776AB)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.x-EE4C2C)
 ![Claude e GPT](https://img.shields.io/badge/LLMs-Claude%20%7C%20GPT-6B4FBB)
@@ -198,7 +198,7 @@ A linha de base acerta bem os casos "fáceis" (personalização e restrições e
 Requer Python 3.11+.
 
 ```bash
-git clone https://github.com/ceciliatv/repertorio.git && cd repertorio
+git clone https://github.com/ceciliatv/sistema-recomendacao-ia.git && cd sistema-recomendacao-ia
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
 ```

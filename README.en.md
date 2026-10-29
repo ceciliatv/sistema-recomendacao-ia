@@ -1,10 +1,10 @@
 <div align="center">
 
-# Repertório
+# AI Recommendation System
 
-**Book, movie, TV series and music recommendations with LLMs, tool use, PyTorch ranking models and an evals framework.**
+**Repertório:** book, movie, TV series and music recommendations with LLMs, tool use, PyTorch ranking models and an evals framework.
 
-[![CI](https://github.com/ceciliatv/repertorio/actions/workflows/ci.yml/badge.svg)](https://github.com/ceciliatv/repertorio/actions/workflows/ci.yml)
+[![CI](https://github.com/ceciliatv/sistema-recomendacao-ia/actions/workflows/ci.yml/badge.svg)](https://github.com/ceciliatv/sistema-recomendacao-ia/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.11%2B-3776AB)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.x-EE4C2C)
 ![Claude and GPT](https://img.shields.io/badge/LLMs-Claude%20%7C%20GPT-6B4FBB)
@@ -120,7 +120,7 @@ Only measured numbers are published. The LLM rows are filled by running `reperto
 ## Running locally
 
 ```bash
-git clone https://github.com/ceciliatv/repertorio.git && cd repertorio
+git clone https://github.com/ceciliatv/sistema-recomendacao-ia.git && cd sistema-recomendacao-ia
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
 

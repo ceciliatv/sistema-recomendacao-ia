@@ -14,7 +14,7 @@ Um agente que interpreta o pedido, consulta o catálogo e os modelos **por ferra
   - `get_item_details(item_id)`
   - `get_user_profile()`
   - `recommend_for_user(domain, k?, year_min?, year_max?, exclude_tags?, require_tags?)`
-  - `find_similar(item_id, target_domain?, k?)`
+  - `find_similar(item_id, target_domain?, k?, year_min?, year_max?, exclude_tags?)`
   - `update_profile(liked?, disliked?, preferred_tags?, avoided_tags?)`
   - `submit_recommendations(recommendations: [{item_id, reason}], message)`: ferramenta terminal; é por ela que a resposta sai estruturada.
 - **Laço do agente** independente de provedor: `Conversation.step()` devolve texto e chamadas de ferramenta normalizados; o laço executa as ferramentas, devolve todos os resultados de uma vez e para em `submit_recommendations`, em texto puro (pergunta de esclarecimento) ou no limite de passos.

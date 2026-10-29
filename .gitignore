@@ -2,9 +2,9 @@
 .env
 
 # dados e artefatos gerados (os datasets não podem ser redistribuídos)
-data/
-artifacts/
-reports/llm/
+/data/
+/artifacts/
+/reports/llm/
 
 # python
 __pycache__/

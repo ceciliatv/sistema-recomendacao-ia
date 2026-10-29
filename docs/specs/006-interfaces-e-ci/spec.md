@@ -1,6 +1,6 @@
 # 006 — CLI, API e CI
 
-**Status:** Em andamento · **Data:** 2026-10-29
+**Status:** Concluída (falta só ver o CI rodar no GitHub) · **Data:** 2026-10-29
 
 ## Problema
 Sem uma porta de entrada única, rodar o projeto exige conhecer a ordem dos scripts. Sem CI, nada garante que o `main` continua passando.
@@ -18,9 +18,9 @@ Uma CLI que cobre o ciclo inteiro (dados → treino → avaliação → uso), um
 - **CI** (GitHub Actions): `ruff check` e `pytest` em Python 3.12 e 3.13, com PyTorch CPU. Os testes usam um catálogo sintético e não acessam a rede.
 
 ## Critérios de aceite
-- [ ] `repertorio --help` lista os comandos acima.
-- [ ] `tests/test_api.py` cobre os endpoints com o catálogo sintético.
-- [ ] `ruff check .` e `pytest` passam localmente.
+- [x] `repertorio --help` lista os comandos acima.
+- [x] `tests/test_api.py` cobre os endpoints com o catálogo sintético.
+- [x] `ruff check .` e `pytest` passam localmente.
 - [ ] O workflow `.github/workflows/ci.yml` passa no GitHub.
 
 ## Riscos

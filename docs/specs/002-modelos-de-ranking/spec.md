@@ -1,6 +1,6 @@
 # 002 — Modelos de ranking e avaliação offline
 
-**Status:** Em andamento · **Data:** 2026-10-29
+**Status:** Concluída · **Data:** 2026-10-29
 
 ## Problema
 O agente precisa de um sinal de personalização que não dependa do LLM "lembrar" de itens: dado o que a pessoa gostou, quais itens do catálogo têm mais chance de agradar? Sem uma avaliação offline com protocolo fixo, não há como saber se um modelo é melhor que "recomendar o mais popular".
@@ -25,11 +25,11 @@ Três modelos comparáveis por domínio, com interface única, e um relatório o
 - **Fora:** busca de hiperparâmetros automatizada, GPU obrigatória.
 
 ## Critérios de aceite
-- [ ] `repertorio train` treina e salva os modelos de filmes, livros e música em `artifacts/`.
-- [ ] `repertorio eval offline --protocol loo` e `--protocol new-users` geram `reports/offline_<protocolo>.md` e `.json`.
-- [ ] Métricas testadas com casos calculados à mão (`tests/test_metrics.py`).
-- [ ] Em dados sintéticos com grupos de gosto, ItemKNN e Two-Tower superam a popularidade (`tests/test_models.py`).
-- [ ] Sementes fixas: duas execuções do mesmo protocolo dão os mesmos números de Popularidade e ItemKNN.
+- [x] `repertorio train` treina e salva os modelos de filmes, livros e música em `artifacts/`.
+- [x] `repertorio eval offline --protocol loo` e `--protocol new-users` geram `reports/offline_<protocolo>.md` e `.json`.
+- [x] Métricas testadas com casos calculados à mão (`tests/test_metrics.py`).
+- [x] Em dados sintéticos com grupos de gosto, ItemKNN e Two-Tower superam a popularidade (`tests/test_models.py`).
+- [x] Sementes fixas: duas execuções do mesmo protocolo dão os mesmos números de Popularidade e ItemKNN.
 
 ## Clarify
 **P1.** Avaliar com negativos amostrados (100 negativos por positivo, comum em artigos) ou ranking completo? *Recomendação:* ranking completo; amostragem infla as métricas e muda a ordem entre modelos.
@@ -41,3 +41,6 @@ Três modelos comparáveis por domínio, com interface única, e um relatório o
 ## Riscos
 - O Two-Tower pode perder do ItemKNN em dados pequenos (MovieLens small). Isso é resultado, não bug: o relatório mostra o que der.
 - Softmax completo escala com o número de itens; acima de ~100 mil itens seria preciso amostrar negativos.
+
+## Registro de implementação
+- 2026-10-29: o modelo servido por domínio (`serving_model`) foi escolhido pelo NDCG@10 no protocolo `new-users`: Two-Tower em livros, ItemKNN em filmes e música. É uma escolha entre dois candidatos com hiperparâmetros fixos, então o viés de selecionar no próprio relatório é pequeno, mas existe: os números dos modelos escolhidos são levemente otimistas.

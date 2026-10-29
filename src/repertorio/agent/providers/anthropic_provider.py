@@ -54,6 +54,13 @@ class AnthropicConversation(Conversation):
             raise ProviderError("Anthropic: sem conexão com a API.") from exc
         except anthropic.APIStatusError as exc:
             raise ProviderError(f"Anthropic: erro {exc.status_code}: {exc.message}") from exc
+        except TypeError as exc:
+            # sem nenhuma credencial, o SDK falha ao montar os headers, antes da requisição
+            if "authentication" not in str(exc).lower():
+                raise
+            raise ProviderError(
+                "Anthropic: nenhuma credencial encontrada (defina ANTHROPIC_API_KEY no .env ou rode `ant auth login`)."
+            ) from exc
 
         usage = Usage(
             input_tokens=response.usage.input_tokens,

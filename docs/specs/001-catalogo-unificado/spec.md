@@ -1,6 +1,6 @@
 # 001 — Catálogo unificado
 
-**Status:** Em andamento · **Data:** 2026-10-29
+**Status:** Concluída · **Data:** 2026-10-29
 
 ## Problema
 Livros, filmes, séries e música vêm de fontes com formatos, ids e vocabulários de gênero diferentes. Sem um esquema comum, o motor e o agente precisariam conhecer cada fonte, e a recomendação entre domínios ("li Duna, que série eu veria?") ficaria impossível.
@@ -24,12 +24,12 @@ Um catálogo único, reproduzível a partir de datasets públicos, em que todo i
 - **Fora:** atualização incremental, imagens, idiomas além do que as fontes trazem.
 
 ## Critérios de aceite
-- [ ] `repertorio data download` baixa as quatro fontes para `data/raw/` e é idempotente (não baixa de novo o que já existe).
-- [ ] `repertorio data build` gera `data/processed/items.parquet` e `interactions_{book,movie,music}.parquet`.
-- [ ] Todo item tem `item_id` único, `domain` válido e ao menos uma tag.
-- [ ] As tags dos quatro domínios compartilham vocabulário (há tags que aparecem em pelo menos três domínios).
-- [ ] `tests/test_tags.py` cobre sinônimos e o filtro de tags de prateleira.
-- [ ] Nenhum dado bruto entra no Git (`data/` no `.gitignore`).
+- [x] `repertorio data download` baixa as quatro fontes para `data/raw/` e é idempotente (não baixa de novo o que já existe).
+- [x] `repertorio data build` gera `data/processed/items.parquet` e `interactions_{book,movie,music}.parquet`.
+- [x] Todo item tem `item_id` único, `domain` válido e ao menos uma tag.
+- [x] As tags dos quatro domínios compartilham vocabulário (há tags que aparecem em pelo menos três domínios).
+- [x] `tests/test_tags.py` cobre sinônimos e o filtro de tags de prateleira.
+- [x] Nenhum dado bruto entra no Git (`data/` no `.gitignore`).
 
 ## Clarify
 **P1.** Dados públicos ou APIs ao vivo? *Recomendação:* datasets públicos, para que os números do README sejam reproduzíveis.

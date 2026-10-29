@@ -1,6 +1,6 @@
 # 004 — Agente com tool use (Anthropic e OpenAI)
 
-**Status:** Em andamento · **Data:** 2026-10-29
+**Status:** Concluída · **Data:** 2026-10-29
 
 ## Problema
 O motor da spec 003 responde a chamadas estruturadas, mas as pessoas pedem em linguagem natural: "quero um livro curto parecido com Black Mirror, nada de terror". Um LLM sozinho entende o pedido, mas inventa títulos e ignora o catálogo. Precisamos do melhor dos dois.
@@ -32,11 +32,11 @@ Um agente que interpreta o pedido, consulta o catálogo e os modelos **por ferra
 - **Fora:** streaming de tokens na CLI, memória entre sessões além do JSON do perfil.
 
 ## Critérios de aceite
-- [ ] Com o `ScriptedProvider`, o laço executa ferramentas, devolve resultados e termina no `submit_recommendations` (`tests/test_agent.py`).
-- [ ] Ids inventados no `submit_recommendations` são descartados e marcados como não ancorados.
-- [ ] Argumentos inválidos geram `tool_result` de erro, sem derrubar o laço.
-- [ ] O `HeuristicProvider` responde aos casos de eval sem chave de API.
-- [ ] Sem chave configurada, `repertorio chat --provider anthropic` falha com mensagem clara, sem stack trace.
+- [x] Com o `ScriptedProvider`, o laço executa ferramentas, devolve resultados e termina no `submit_recommendations` (`tests/test_agent.py`).
+- [x] Ids inventados no `submit_recommendations` são descartados e marcados como não ancorados.
+- [x] Argumentos inválidos geram `tool_result` de erro, sem derrubar o laço.
+- [x] O `HeuristicProvider` responde aos casos de eval sem chave de API.
+- [x] Sem chave configurada, `repertorio chat --provider anthropic` falha com mensagem clara, sem stack trace.
 
 ## Clarify
 **P1.** Há chaves de API para validar os provedores reais agora? *Recomendação:* não bloquear: implementar os dois provedores conforme a documentação dos SDKs, testar o laço com o provedor roteirizado e rodar os evals reais quando as chaves existirem.

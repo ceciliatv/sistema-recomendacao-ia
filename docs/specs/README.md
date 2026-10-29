@@ -14,9 +14,9 @@ Este projeto foi construído com **spec-driven development**: cada parte do sist
 
 | Spec | Assunto | Status |
 |---|---|---|
-| [001](001-catalogo-unificado/spec.md) | Catálogo unificado (livros, filmes, séries, música) | Em andamento |
-| [002](002-modelos-de-ranking/spec.md) | Modelos de ranking e avaliação offline (PyTorch) | Em andamento |
-| [003](003-motor-e-cold-start/spec.md) | Motor de recomendação, perfil e cold start | Em andamento |
-| [004](004-agente-tool-use/spec.md) | Agente com tool use (Anthropic e OpenAI) | Em andamento |
-| [005](005-evals-llm/spec.md) | Evals das respostas do agente | Em andamento |
-| [006](006-interfaces-e-ci/spec.md) | CLI, API e CI | Em andamento |
+| [001](001-catalogo-unificado/spec.md) | Catálogo unificado (livros, filmes, séries, música) | Concluída |
+| [002](002-modelos-de-ranking/spec.md) | Modelos de ranking e avaliação offline (PyTorch) | Concluída |
+| [003](003-motor-e-cold-start/spec.md) | Motor de recomendação, perfil e cold start | Concluída |
+| [004](004-agente-tool-use/spec.md) | Agente com tool use (Anthropic e OpenAI) | Concluída |
+| [005](005-evals-llm/spec.md) | Evals das respostas do agente | Concluída |
+| [006](006-interfaces-e-ci/spec.md) | CLI, API e CI | Concluída |

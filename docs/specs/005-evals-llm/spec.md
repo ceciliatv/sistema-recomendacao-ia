@@ -1,6 +1,6 @@
 # 005 — Evals das respostas do agente
 
-**Status:** Em andamento · **Data:** 2026-10-29
+**Status:** Concluída · **Data:** 2026-10-29
 
 ## Problema
 Métricas offline (spec 002) medem o ranking, não a resposta que a pessoa recebe. Trocar de modelo, de prompt ou de ferramenta muda a qualidade de um jeito que só se vê olhando muitas conversas. Sem evals, cada mudança é no escuro.
@@ -30,11 +30,11 @@ Um conjunto de casos versionado e um runner que mede, por provedor e por categor
 - **Fora:** dashboards, comparação estatística automática entre execuções.
 
 ## Critérios de aceite
-- [ ] Pelo menos 24 casos cobrindo as seis categorias.
-- [ ] `repertorio eval llm --provider heuristic --yes` roda sem chave e gera o relatório.
-- [ ] Cada grader tem teste com caso que passa e caso que falha (`tests/test_graders.py`).
-- [ ] O juiz é opcional e, quando ligado, usa o provedor oposto por padrão.
-- [ ] O README mostra a linha de base heurística e deixa claro que as linhas de Claude e GPT só entram com números medidos.
+- [x] Pelo menos 24 casos cobrindo as seis categorias.
+- [x] `repertorio eval llm --provider heuristic --yes` roda sem chave e gera o relatório.
+- [x] Cada grader tem teste com caso que passa e caso que falha (`tests/test_graders.py`).
+- [x] O juiz é opcional e, quando ligado, usa o provedor oposto por padrão.
+- [x] O README mostra a linha de base heurística e deixa claro que as linhas de Claude e GPT só entram com números medidos.
 
 ## Clarify
 **P1.** Sem chaves agora, o que publicar no README? *Recomendação:* só números medidos: a linha de base heurística e as métricas offline. As linhas dos LLMs ficam vazias, com o comando para gerá-las.

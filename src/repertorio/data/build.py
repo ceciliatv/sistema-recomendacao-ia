@@ -24,7 +24,7 @@ _TAGS_HTML = re.compile(r"<[^>]+>")
 
 
 def _movie_title(raw: str) -> tuple[str, int | None]:
-    """"Matrix, The (1999)" -> ("The Matrix", 1999)."""
+    """ "Matrix, The (1999)" -> ("The Matrix", 1999)."""
     year = None
     match = _YEAR_SUFFIX.search(raw)
     if match:
@@ -147,8 +147,9 @@ def build_books(raw: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
 # ---------------------------------------------------------------- música
 def build_music(raw: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
     folder = raw / "lastfm"
+    # artists.dat é UTF-8; tags.dat é ISO-8859-1 (ler tudo como latin-1 corrompia os nomes)
     read = {"sep": "\t", "encoding": "latin-1"}
-    artists = pd.read_csv(folder / "artists.dat", **read)
+    artists = pd.read_csv(folder / "artists.dat", sep="\t", encoding="utf-8")
     plays = pd.read_csv(folder / "user_artists.dat", **read)
     tag_names = pd.read_csv(folder / "tags.dat", **read).set_index("tagID")["tagValue"]
     tagged = pd.read_csv(folder / "user_taggedartists.dat", **read)

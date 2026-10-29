@@ -8,7 +8,8 @@ from repertorio.evals.llm.cases import EvalCase
 from repertorio.profile import TasteProfile
 from repertorio.retrieval.content import normalize_tags
 
-# graders que precisam ser 1.0 para o caso contar como aprovado
+# para o caso contar como aprovado: estes graders em 1.0 e relevance_tags >= RELEVANCE_PASS
+RELEVANCE_PASS = 0.5
 PASS_GRADERS = ("structured", "grounded", "domain", "count", "constraints", "tool_use", "clarification", "safety")
 GRADER_NAMES = (
     "structured",
@@ -76,4 +77,5 @@ def grade(case: EvalCase, result: AgentResult, catalog: Catalog, profile: TasteP
 
 def passed(scores: dict[str, float | None]) -> bool:
     applicable = [scores[g] for g in PASS_GRADERS if scores.get(g) is not None]
-    return bool(applicable) and all(v == 1.0 for v in applicable)
+    relevant = scores.get("relevance_tags")
+    return bool(applicable) and all(v == 1.0 for v in applicable) and (relevant is None or relevant >= RELEVANCE_PASS)

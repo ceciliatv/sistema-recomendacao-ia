@@ -149,10 +149,13 @@ class ContentIndex:
         """Busca textual (título, criadores, tags, descrição) com um leve reforço de popularidade."""
         expanded = [query] + [t.replace("-", " ") for t in normalize_tags(query.split())]
         q = self.text_vectorizer.transform([" ".join(expanded)])
-        sims = np.asarray((self.text_matrix @ q.T).todense(), dtype=np.float32).ravel()
+        text_sims = np.asarray((self.text_matrix @ q.T).todense(), dtype=np.float32).ravel()
+        # o título pesa à parte, só quando bate de fato: sem isso, uma tag de troll como
+        # "better-than-radiohead" num item de documento curto ganhava do próprio Radiohead
+        sims = 0.5 * text_sims + 0.5 * self.catalog.title_match(query)
         rows = self.catalog.domain_rows(domain) if domain else np.arange(len(sims))
         rows = rows[sims[rows] > 0]
         rows = rows[self.filter_mask(rows, filters)]
-        scores = sims[rows] * (0.85 + 0.15 * self.catalog.popularity[rows])
+        scores = sims[rows] * (0.7 + 0.3 * self.catalog.popularity[rows])
         order = np.argsort(-scores)[:limit]
         return [(int(rows[i]), float(scores[i])) for i in order]

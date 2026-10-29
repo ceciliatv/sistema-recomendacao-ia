@@ -112,13 +112,33 @@ class Catalog:
         if exact:
             best = max(exact, key=lambda r: self._popularity[r])
             return self.item_id(best)
-        vectorizer, matrix = self._fuzzy_index()
-        sims = (matrix @ vectorizer.transform([key]).T).toarray().ravel()
+        sims = self.title_similarity(key)
         if domain:
             sims[self._domains != domain] = 0.0
         # desempate leve por popularidade
         best = int(np.argmax(sims + 0.01 * self._popularity))
         return self.item_id(best) if sims[best] >= min_similarity else None
+
+    def title_similarity(self, text: str) -> np.ndarray:
+        """Similaridade (n-gramas de caracteres) entre o texto e o título de cada item."""
+        vectorizer, matrix = self._fuzzy_index()
+        return (matrix @ vectorizer.transform([normalize_title(text)]).T).toarray().ravel()
+
+    def title_match(self, text: str, candidates: int = 50) -> np.ndarray:
+        """1,0 para título igual ao texto, 0,5 quando todas as palavras do texto estão no título."""
+        key = normalize_title(text)
+        words = set(key.split())
+        out = np.zeros(len(self.items), dtype=np.float32)
+        if not words:
+            return out
+        sims = self.title_similarity(key)
+        for row in np.argpartition(-sims, min(candidates, len(sims) - 1))[:candidates]:
+            title = self._norm_titles[row]
+            if title == key:
+                out[row] = 1.0
+            elif words <= set(title.split()):
+                out[row] = 0.5
+        return out
 
     def _fuzzy_index(self) -> tuple[TfidfVectorizer, Any]:
         if self._fuzzy is None:

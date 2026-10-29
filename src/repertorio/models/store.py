@@ -28,10 +28,12 @@ class DomainConfig:
     serving_model: str = "two_tower"  # modelo usado pelo motor; escolhido pela avaliação offline
 
 
+# serving_model = melhor NDCG@10 no protocolo new-users (reports/offline_new-users.md),
+# porque quem conversa com o agente é sempre uma pessoa fora do treino
 DOMAIN_CONFIGS: dict[str, DomainConfig] = {
-    "movie": DomainConfig(positive_threshold=4.0, max_users=None, two_tower=TwoTowerConfig(epochs=40)),
-    "book": DomainConfig(positive_threshold=4.0, max_users=10_000, two_tower=TwoTowerConfig(epochs=10)),
-    "music": DomainConfig(positive_threshold=None, max_users=None, two_tower=TwoTowerConfig(epochs=30)),
+    "movie": DomainConfig(4.0, None, TwoTowerConfig(epochs=40), serving_model="itemknn"),
+    "book": DomainConfig(4.0, 10_000, TwoTowerConfig(epochs=10), serving_model="two_tower"),
+    "music": DomainConfig(None, None, TwoTowerConfig(epochs=30), serving_model="itemknn"),
 }
 
 

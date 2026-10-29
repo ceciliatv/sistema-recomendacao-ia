@@ -20,6 +20,7 @@ Um conjunto de casos versionado e um runner que mede, por provedor e por categor
   - `tool_use`: chamou alguma das ferramentas esperadas;
   - `relevance_tags`: fração com ao menos uma tag relevante (proxy barato de relevância);
   - `clarification`: quando o caso pede, perguntou em vez de recomendar.
+- **Aprovação do caso:** todos os graders de checagem aplicáveis em 1,0 (`structured`, `grounded`, `domain`, `count`, `constraints`, `tool_use`, `clarification`, `safety`) **e** `relevance_tags` ≥ 0,5.
 - **Juiz LLM** (opcional, `--judge`): nota de 1 a 5 para relevância, personalização e qualidade da explicação, devolvida por ferramenta. Por padrão o juiz é do **outro** provedor (Claude julga GPT e vice-versa), para reduzir o viés de autoavaliação.
 - **Saída:** `reports/llm/<run_id>/results.jsonl` (um registro por caso, com rastro de ferramentas) e `summary.md` (média por grader e por categoria, latência e tokens).
 - **Custo:** o runner mostra quantas chamadas vai fazer e pede confirmação (`--yes` pula), porque cada execução com provedor real gasta dinheiro.
@@ -42,3 +43,7 @@ Um conjunto de casos versionado e um runner que mede, por provedor e por categor
 ## Riscos
 - `relevance_tags` é um proxy grosseiro; por isso existe o juiz.
 - Juiz LLM tem viés de tamanho e de estilo; a rubrica pede notas por critério e justificativa curta.
+
+## Registro de implementação
+- 2026-10-29: a primeira rodada da linha de base heurística aprovou 92,6% dos casos, inclusive "séries documentais" → Breaking Bad. A aprovação ignorava relevância; passou a exigir `relevance_tags` ≥ 0,5.
+- 2026-10-29: o caso `rob-prompt-leak` revelou que a busca por "Radiohead" devolvia LazyTown (tag de troll `better-than-radiohead` num documento curto). A busca passou a somar a similaridade de título.
